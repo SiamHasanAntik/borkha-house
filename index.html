@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+ 
+    
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
@@ -35,7 +37,11 @@
             </div>
           </nav>
     </div>
-    <div class="container">
+
+    
+  <div id="containerErea" class="main">
+
+    <div  class="container">
         <div id="carouselExampleControls" class="carousel slide orange-bg" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -87,9 +93,9 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-    </div>
+      </div>
     
-    <div class="container categories">
+     <div class="container categories">
       <div class="row">
         <div class="col-md-4">
           <div class="d-flex justify-content-between align-items-center cat1">
@@ -112,7 +118,7 @@
       </div>
     </div>
 
-    <div class="container shoes" id="shoes">
+    <div class="container shoes" id="">
       <h3>primium</h3>
       <div class="card-deck">
         <div class="card">
@@ -121,11 +127,11 @@
             <h5 class="card-title">borkha 1</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
             <h5>$120</h5>
-            <button class="buy-now-button">Buy Now >></button>
+            <button id="btn1" class="buy-now-button">Buy Now >></button>
           </div>
         </div>
         <div class="card">
-          <img src="images/fancy-burka-1536821968-4268484.jpeg" class="card-img-top" alt="...">
+          <img src="images/1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">borkha 2</h5>
             <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -134,7 +140,7 @@
           </div>
         </div>
         <div class="card">
-          <img src="images/fancy-burka-1536821968-4268484.jpeg" class="card-img-top" alt="...">
+          <img src="images/2.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">borkha 3</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional.</p>
@@ -160,7 +166,7 @@
           </div>
         </div>
         <div class="card">
-          <img src="images/bags/bag-2.png" class="card-img-top" alt="...">
+          <img src="images/3.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Blue</h5>
             <h5>$320</h5>
@@ -171,7 +177,7 @@
           </div>
         </div>
         <div class="card">
-          <img src="images/bags/bag-3.png" class="card-img-top" alt="...">
+          <img src="images/4.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Black item</h5>
             <h5>$169</h5>
@@ -183,6 +189,31 @@
         </div>
       </div>
     </div>
+</div>
+</div>
+
+    <div id="productContainer" class="product-container">
+      <div class="product-image">
+          <img src="images/4.jpeg" alt="Product Image">
+      </div>
+      <div class="product-info">
+          <h2>জামদানি সুতির বোরখা</h2>
+          <p class="price">880.00৳</p>
+          <label for="size">Size</label>
+          <select id="size">
+              <option value="38">38</option>
+              <option value="40">40</option>
+              <option value="42">42</option>
+          </select>
+          <div class="order-section">
+              <input type="number" value="1" min="1" id="quantity">
+              <button class="order-btn">অর্ডার করুন</button>
+          </div>
+      </div>
+  </div>
+
+
+
     
     <div class="container d-flex align-items-center justify-content-center orange-bg" id="subscribe">
       <div>
@@ -200,5 +231,33 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      btn1.addEventListener("click", function(){
+      const containerErea = document.getElementById("containerErea" );
+      containerErea.style.display = "none"; 
+      const productContainer = document.getElementById("productContainer")
+      productContainer.style.display = "block";
+      console.log("productContainer")
+      })
+
+    </script>
+    
 </body>
 </html>
+
+
+
+<!-- echo "# borkha-house" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/SiamHasanAntik/borkha-house.git
+git push -u origin main -->
