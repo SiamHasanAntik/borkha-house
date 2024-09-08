@@ -1,57 +1,185 @@
-
-
+/* Base Styles */
 .product-container {
-    display: none;
-    
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff;
+    width: 900px;
     margin: 50px auto;
-    max-width: 900px;
+    background-color: #fff;
+    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Product Image */
+.product-image {
+    float: left;
+    width: 40%;
+    margin-right: 30px;
 }
 
 .product-image img {
-    max-width: 400px;
+    max-width: 100%;
+    height: auto;
     border: 1px solid #ccc;
 }
 
+/* Product Info Section */
 .product-info {
-    margin-left: 40px;
-    max-width: 400px;
+    float: left;
+    width: 55%;
 }
 
 h2 {
     font-size: 24px;
     color: #5c0c85;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .price {
     font-size: 22px;
     color: #333;
-    margin-bottom: 10px;
-}
-
-label {
-    font-size: 16px;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
-}
-
-select {
-    font-size: 16px;
-    padding: 8px;
-    width: 100px;
     margin-bottom: 20px;
 }
 
-.order-section {
+/* Size Section */
+.size-section {
     display: flex;
-    align-items: center;
+    margin-bottom: 20px;
 }
+
+.size-section label {
+    font-size: 16px;
+    color: #333;
+    margin-right: 10px;
+}
+
+#size, #custom-size {
+    font-size: 16px;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+#custom-size {
+    width: 150px;
+}
+
+/* Order Section */
+.order-section {
+    margin-top: 20px;
+}
+
+#options{
+    
+}
+
+
+
+/* Container for input with icon */
+.input-with-icon {
+    position: relative;
+    width: fit-content;
+}
+
+/* Input field styling */
+.input-with-icon input[type="number"] {
+    width: 50px;
+    padding-right: 25px; /* Space for the icon */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    -moz-appearance: textfield;
+}
+
+.input-with-icon input[type="number"]::-webkit-outer-spin-button,
+.input-with-icon input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Icon inside input box */
+.setting-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+}
+
+/* Change icon color on hover */
+.setting-icon:hover {
+    color: #333;
+}
+
+
+
+
+.form-control{
+    margin-left: 1px;
+    width: 30%;
+    height: 40px;
+}
+
+/* Container for quantity input */
+.quantity-input {
+    display: inline-flex;
+    align-items: center;
+    
+    
+    overflow: hidden;
+}
+
+/* Styling for the quantity buttons */
+.quantity-btn {
+    margin: 1px;
+    background-color: transparent;
+    border: none;
+    width: 5px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #180202;
+}
+
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Input field for quantity */
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Order button styling */
+.order-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.order-btn:hover {
+    background-color: #218838;
+}
+
 
 #quantity {
     width: 50px;
@@ -74,6 +202,154 @@ select {
     background-color: #218838;
 }
 
+/* Thumbnail Image Section */
+.product-thumbnails {
+    clear: both;
+    margin-top: 20px;
+    display: flex;
+   
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 2px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #5c0c85;
+}
+
+/* Clearfix for floated elements */
+.product-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .product-container {
+        width: 100%;
+        margin: 20px auto;
+        padding: 15px;
+        box-shadow: none;
+    }
+
+    .product-image, .product-info {
+        float: none;
+        width: 100%;
+    }
+
+    .product-info {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 22px;
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .order-btn {
+        padding: 8px 15px;
+    }
+
+    .thumbnail {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .order-btn {
+        padding: 7px 12px;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .container{
@@ -90,6 +366,7 @@ select {
     color: #FF136F;
 }
 .buy-now-button{
+    margin-top: 5px;
     background-image: linear-gradient(to bottom, #FF589B 0%, #FF136F 100%);
     color: #fff;
     border: none;
