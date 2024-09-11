@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .checkout-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 900px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .customer-info, .order-summary {
+            width: 48%;
+        }
+        .customer-info label, .customer-info input {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .order-summary h2 {
+            margin-bottom: 15px;
+        }
+        .order-summary table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .order-summary th, .order-summary td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .order-summary td input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .coupon-code {
+            margin: 10px 0;
+            display: block;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-container">
+    <!-- Customer Information -->
+    <div class="customer-info">
+        <h2>Customer Information</h2>
+        <label>আপনার নাম *</label>
+        <input type="text" placeholder="আপনার নাম" required>
+
+        <label>আপনার ঠিকানা *</label>
+        <input type="text" placeholder="আপনার ঠিকানা" required>
+
+        <label>Phone *</label>
+        <input type="text" placeholder="Phone" required>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h2>Your Order</h2>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr>
+                <td id="productName">আপনার পণ্যটি</td>
+                <td id="productPrice">880.00৳</td>
+            </tr>
+            <tr>
+                <td>Subtotal</td>
+                <td id="subtotal">880.00৳</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>
+                    <input type="radio" name="shipping" value="70" checked> ডেলিভারি ফি: 70৳ <br>
+                    <input type="radio" name="shipping" value="130"> সারা দেশ: 130৳ <br>
+                    <input type="radio" name="shipping" value="0"> ফ্রি ডেলিভারি
+                </td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td id="total">950.00৳</td>
+            </tr>
+        </table>
+
+        <!-- Coupon Code -->
+        <div>
+            <span class="coupon-code" onclick="toggleCoupon()">Click here to enter your coupon code</span>
+            <input id="couponInput" type="text" class="hidden" placeholder="Enter coupon code" oninput="applyCoupon()">
+        </div>
+
+        <!-- Cash on Delivery Option -->
+        <div>
+            <input type="checkbox" id="cashOnDelivery"> Pay with cash upon delivery
+        </div>
+
+        <!-- Place Order Button -->
+        <div style="margin-top: 20px;">
+            <button class="btn" onclick="placeOrder()">Place order</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Product data (simulated)
+    const product = {
+        name: 'আপনার পণ্যটি',
+        price: 880
+    };
+    const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+
+    // Update total when shipping changes
+    shippingOptions.forEach(option => {
+        option.addEventListener('change', updateTotal);
+    });
+
+    // Toggle Coupon Code Input
+    function toggleCoupon() {
+        const couponInput = document.getElementById('couponInput');
+        couponInput.classList.toggle('hidden');
+    }
+
+    // Apply Coupon
+    let couponApplied = false;
+    function applyCoupon() {
+        const couponInput = document.getElementById('couponInput').value;
+        if (couponInput === "DISCOUNT10") {
+            couponApplied = true;
+            updateTotal();
+        } else {
+            couponApplied = false;
+            updateTotal();
+        }
+    }
+
+    // Update total based on shipping and coupon
+    function updateTotal() {
+        const shippingCost = parseInt(document.querySelector('input[name="shipping"]:checked').value);
+        let total = product.price + shippingCost;
+
+        if (couponApplied) {
+            total *= 0.9; // 10% discount
+        }
+
+        document.getElementById('total').textContent = total.toFixed(2) + '৳';
+    }
+
+    // Place order
+    function placeOrder() {
+        alert('Your order has been placed!');
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+    <script>
+        // Retrieve product data from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart'));
+
+        // Display product data in the order summary
+        document.getElementById('productName').textContent = cart.name;
+        document.getElementById('productPrice').textContent = cart.price + '৳';
+        document.getElementById('subtotal').textContent = cart.price + '৳';
+        document.getElementById('total').textContent = cart.price + 70 + '৳'; // Default shipping fee 70
+
+        // Update total when shipping changes
+        document.querySelectorAll('input[name="shipping"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const shippingCost = parseInt(this.value);
+                document.getElementById('total').textContent = cart.price + shippingCost + '৳';
+            });
+        });
+
+        function placeOrder() {
+            alert('Order Placed!');
+        }
+    </script> -->
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="notification-bar">
+            <p>আপনার পণ্যটি কার্টে যোগ হয়েছে!</p>
+            <a href="#" class="continue-shopping">Continue shopping</a>
+        </div>
+
+        <div class="checkout-wrapper">
+            <div class="form-section">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="name">আপনার নাম *</label>
+                        <input type="text" id="name" placeholder="আপনার নাম" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">আপনার ঠিকানা *</label>
+                        <input type="text" id="address" placeholder="আপনার ঠিকানা" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="text" id="phone" placeholder="Phone" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h3>Your Order</h3>
+                </div>
+                <div class="order-details">
+                    <table>
+                        <tr>
+                            <td>Product</td>
+                            <td>Subtotal</td>
+                        </tr>
+                        <tr>
+                            <td id="productName">আপনার পণ্যটি</td>
+                            <td id="productPrice">7880.00৳</td>
+                        </tr>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td class="subtotal-value" id="subtotal">9880.00৳</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping</td>
+                            <td>
+                                <div class="shipping-options">
+                                    <label><input type="radio" name="shipping" value="70" checked> ডেলিভারি ফি: 70৳</label><br>
+                                    <label><input type="radio" name="shipping" value="130"> সারা দেশ: 130৳</label><br>
+                                    <label><input type="radio" name="shipping" value="0"> ফ্রি ডেলিভারি</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td class="total-value">950.00৳</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="coupon-section">
+                    <a href="#">Click here to enter your coupon code</a>
+                </div>
+
+                <div class="payment-options">
+                    <label><input type="checkbox"> Pay with cash upon delivery</label>
+                </div>
+
+                <div class="place-order">
+                    <button type="submit">Place order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Retrieve product details from localStorage
+    const product = JSON.parse(localStorage.getItem('cartProduct'));
+
+    // Display the retrieved details on the checkout page
+    if (product) {
+        document.getElementById('productName').innerText = product.name;
+        document.getElementById('productPrice').innerText = product.price + "৳";
+        document.getElementById('productSize').innerText = product.size;
+        document.getElementById('productQuantity').innerText = product.quantity;
+        document.getElementById('productNote').innerText = product.note || 'N/A'; // Show "N/A" if no note is provided
+
+        // Calculate the total price
+        const totalPrice = product.price * product.quantity;
+        document.getElementById('totalPrice').innerText = totalPrice + "৳";
+    } else {
+        alert('No product found in cart!');
+    }
+    </script>
+</body>
+</html> -->
