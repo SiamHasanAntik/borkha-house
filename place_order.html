@@ -1,0 +1,19 @@
+<form action="place_order.php" method="POST" onsubmit="return placeOrder()">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" required>
+    
+    <label for="address">Address</label>
+    <input type="text" name="address" id="address" required>
+    
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" id="phone" required>
+
+    <!-- Example product -->
+    <input type="hidden" name="product" id="product" value="Off-White Silk Abaya">
+
+    <input type="hidden" name="subtotal" id="subtotal" value="3200">
+    <input type="hidden" name="shipping" id="shipping" value="70">
+    <input type="hidden" name="total" id="total" value="3270">
+    
+    <input type="submit" value="Place Order">
+</form>
