@@ -48,3 +48,4 @@ document.querySelector('.plus').addEventListener('click', function () {
     var quantityInput = document.getElementById('quantity');
     quantityInput.value = parseInt(quantityInput.value) + 1;
 });
+

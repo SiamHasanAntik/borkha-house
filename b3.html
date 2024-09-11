@@ -69,7 +69,7 @@
   <!-- Product Info Section -->
   <div class="product-info">
       <h2>জামদানি সুতির বোরখা</h2>
-      <div class="price">880.00৳</div>
+      <div class="price">580.00৳</div>
 
       <!-- Size Section -->
       <div class="size-section">
@@ -98,7 +98,7 @@
             <input type="number" id="quantity" value="1" min="1">
             <button class="quantity-btn plus">+</button>
         </div>
-        <button class="order-btn" onclick="window.location.href='addressForm.html';";>Add to Basket</button>
+        <button id="addToBasket" class="order-btn" onclick="addToCart()">Add to Basket</button>
     </div>
 
       <!-- Product Thumbnails Section -->
@@ -161,6 +161,23 @@
 
     </script>
      <script src="script.js"></script>
+
+     <script>
+      function addToCart() {
+          // Sample product data (in real scenario, this will be dynamic)
+          const product = {
+              name: 'আপনার পণ্যটি',
+              price: 580,
+              quantity: 1
+          };
+      
+          // Store product details in localStorage
+          localStorage.setItem('cart', JSON.stringify(product));
+      
+          // Redirect to the checkout page
+          window.location.href = 'checkout.html';
+      }
+      </script>
     
 </body>
 </html>

@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
  
@@ -60,7 +61,7 @@
 
 
 
-<div id="productContainer" class="product-container">
+ <div id="productContainer" class="product-container">
   <!-- Main Product Image Section -->
   <div class="product-image">
       <img id="product-img" src="images/fancy-burka-1536821968-4268484.jpeg" alt="Product Image">
@@ -69,7 +70,7 @@
   <!-- Product Info Section -->
   <div class="product-info">
       <h2>জামদানি সুতির বোরখা</h2>
-      <div class="price">880.00৳</div>
+      <div id="productPrice" class="price">880.00৳</div>
 
       <!-- Size Section -->
       <div class="size-section">
@@ -78,16 +79,17 @@
               <option value="38">38</option>
               <option value="40">40</option>
               <option value="42">42</option>
+              <input class="form-control1" placeholder="Note" type="text">
+          <label for="options"></label>
           </select>
           
-          <select  id="options">
+          <!-- <select  id="options">
               <option value="costomise">costomise</option>
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
               <option value="option4">Option 4</option>
-              <input class="form-control1" placeholder="Note" type="text">
-          <label for="options"></label>
-          </select>
+              
+          </select> -->
           
       </div>
 
@@ -98,7 +100,7 @@
             <input type="number" id="quantity" value="1" min="1">
             <button class="quantity-btn plus">+</button>
         </div>
-        <button class="order-btn" onclick="window.location.href='addressForm.html';";>Add to Basket</button>
+        <button id="addToBasket" class="order-btn" onclick="addToCart()">Add to Basket</button>
     </div>
 
       <!-- Product Thumbnails Section -->
@@ -111,6 +113,28 @@
 </div>
 
 
+ <!-- <div class="product-wrapper">
+        <h1>জামদানি সুতির বোরখা</h1>
+        <p>Price: <span id="productPrice">1880.00</span>৳</p>
+        
+        <label for="size">Size:</label>
+        <select id="size">
+            <option value="38">38</option>
+            <option value="40">40</option>
+            <option value="42">42</option>
+        </select>
+        
+        <label for="note">Note:</label>
+        <input type="text" id="note" placeholder="Note">
+        
+        <div class="quantity-wrapper">
+            <button id="decrease">-</button>
+            <input type="number" id="quantity" value="1" min="1">
+            <button id="increase">+</button>
+        </div>
+        
+        <button id="addToCart">Add to Basket</button>
+    </div> -->
 
 
 
@@ -149,18 +173,31 @@
 
 
 
-    <script>
-      const btn1 = document.getElementById("btn1");
-      btn1.addEventListener("click", function(){
-      const containerErea = document.getElementById("containerErea" );
-      containerErea.style.display = "none"; 
-      const productContainer = document.getElementById("productContainer")
-      productContainer.style.display = "block";
-      console.log("productContainer")
-      })
+   
+    <script src="script.js"></script>
 
-    </script>
-     <script src="script.js"></script>
+    <!-- Add to Basket Button -->
+<button id="addToBasket" onclick="addToCart()">Add to Basket</button>
+
+<script>
+function addToCart() {
+    // Sample product data (in real scenario, this will be dynamic)
+    const product = {
+        name: 'আপনার পণ্যটি',
+        price: 880,
+        quantity: 1
+    };
+
+    // Store product details in localStorage
+    localStorage.setItem('cart', JSON.stringify(product));
+
+    // Redirect to the checkout page
+    window.location.href = 'checkout.html';
+}
+</script>
+
+
+     
     
 </body>
 </html>
